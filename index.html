@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Мои часы</title>
+<style>
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background: #080808;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+  }
+
+  .clock {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .digit {
+    background: #191919;
+    border: 1px solid #333;
+    border-radius: 12px;
+    width: 58px;
+    height: 82px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 42px;
+  }
+
+  .colon {
+    font-size: 42px;
+  }
+</style>
+</head>
+<body>
+
+<div class="clock">
+  <div class="digit" id="h1">0</div>
+  <div class="digit" id="h2">0</div>
+  <div class="colon">:</div>
+  <div class="digit" id="m1">0</div>
+  <div class="digit" id="m2">0</div>
+</div>
+
+<script>
+function updateClock() {
+  const time = new Date().toLocaleTimeString("ru-RU", {
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false
+  });
+
+  const digits = time.replace(":", "");
+
+  ["h1", "h2", "m1", "m2"].forEach((id, i) => {
+    document.getElementById(id).textContent = digits[i];
+  });
+}
+
+updateClock();
+setInterval(updateClock, 1000);
+</script>
+
+</body>
+</html>
